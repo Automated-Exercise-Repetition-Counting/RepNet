@@ -7,7 +7,6 @@ import cv2
 
 import matplotlib
 from matplotlib.animation import FuncAnimation
-# %matplotlib
 import matplotlib.pyplot as plt
 
 import numpy as np
@@ -823,15 +822,15 @@ def read_video(video_filename, width=224, height=224):
 #   imgs.append(image)
 
 
-def download_video_from_url(url_to_video, path_to_video="/tmp/video.mp4"):
-    if os.path.exists(path_to_video):
-        os.remove(path_to_video)
-    ydl_opts = {
-        "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",
-        "outtmpl": str(path_to_video),
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([url_to_video])
+# def download_video_from_url(url_to_video, path_to_video="/tmp/video.mp4"):
+#     if os.path.exists(path_to_video):
+#         os.remove(path_to_video)
+#     ydl_opts = {
+#         "format": "bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4",
+#         "outtmpl": str(path_to_video),
+#     }
+#     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+#         ydl.download([url_to_video])
 
 
 def get_score(period_score, within_period_score):

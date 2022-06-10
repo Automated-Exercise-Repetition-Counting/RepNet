@@ -3,8 +3,8 @@ import os
 import repnet
 
 # CONSTANTS
-PATH_TO_TRAINED_MODEL_DIR = "./model"
-VIDEO_PATH = "./data/test.mp4"
+PATH_TO_CKPT = "./model"
+VIDEO_PATH = "./data/IMG_2167.MOV"
 TEMP_DIR = "./tmp"
 
 ## PARAMS
@@ -48,12 +48,12 @@ def load_trained_repnet():
         "https://storage.googleapis.com/repnet_ckpt/ckpt-88.index",
     ]
 
-    if not os.path.exists(PATH_TO_TRAINED_MODEL_DIR):
-        os.makedirs(PATH_TO_TRAINED_MODEL_DIR)
+    if not os.path.exists(PATH_TO_CKPT):
+        os.makedirs(PATH_TO_CKPT)
 
     # download all checkpoint files from google storage
     for url in download_urls:
-        file_path = os.path.join(PATH_TO_TRAINED_MODEL_DIR, url.split("/")[-1])
+        file_path = os.path.join(PATH_TO_CKPT, url.split("/")[-1])
         if not os.path.exists(file_path):
             print("Downloading %s" % url)
             urllib.request.urlretrieve(url, filename=file_path)

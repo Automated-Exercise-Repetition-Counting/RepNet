@@ -608,34 +608,34 @@ def create_count_video(
     plt.close()
 
 
-def show_video(video_path):
-    import cv2
-    import time
+# def show_video(video_path):
+#     import cv2
+#     import time
 
-    cap = cv2.VideoCapture(video_path)
+#     cap = cv2.VideoCapture(video_path)
 
-    fps = int(cap.get(cv2.CAP_PROP_FPS))
+#     fps = int(cap.get(cv2.CAP_PROP_FPS))
 
-    if cap.isOpened() == False:
-        raise Exception("Error File Not Found")
+#     if cap.isOpened() == False:
+#         raise Exception("Error File Not Found")
 
-    while cap.isOpened():
-        ret, frame = cap.read()
+#     while cap.isOpened():
+#         ret, frame = cap.read()
 
-        if ret == True:
+#         if ret == True:
 
-            time.sleep(1 / fps)
+#             time.sleep(1 / fps)
 
-            cv2.imshow("frame", frame)
+#             cv2.imshow("frame", frame)
 
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-                break
+#             if cv2.waitKey(1) & 0xFF == ord("q"):
+#                 break
 
-        else:
-            break
+#         else:
+#             break
 
-    cap.release()
-    cv2.destroyAllWindows()
+#     cap.release()
+#     cv2.destroyAllWindows()
 
 
 def viz_reps(
@@ -742,7 +742,6 @@ def viz_reps(
     anim = FuncAnimation(fig, update, frames=num_frames, interval=interval, blit=False)
     anim.save(tmp_path, dpi=80)
     plt.close()
-    return show_video(tmp_path)
 
 
 def record_video(interval_in_ms, num_frames, quality=0.8):

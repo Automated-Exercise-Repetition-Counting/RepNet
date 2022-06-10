@@ -5,10 +5,6 @@ import time
 
 import cv2
 
-from IPython.display import display
-from IPython.display import HTML
-from IPython.display import Javascript
-
 import matplotlib
 from matplotlib.animation import FuncAnimation
 import matplotlib.pyplot as plt
@@ -18,8 +14,6 @@ from PIL import Image
 from scipy.signal import medfilt
 
 import tensorflow as tf
-
-import youtube_dl
 
 # Model definition
 layers = tf.keras.layers

@@ -67,7 +67,7 @@ def run_repnet(model, imgs, vid_fps):
         within_period,
         per_frame_counts,
         chosen_stride,
-    ) = get_counts(
+    ) = repnet.get_counts(
         model,
         imgs,
         strides=[1, 2, 3, 4],
@@ -79,7 +79,7 @@ def run_repnet(model, imgs, vid_fps):
         fully_periodic=FULLY_PERIODIC,
     )
     print("Visualizing results...")
-    viz_reps(
+    repnet.viz_reps(
         imgs,
         per_frame_counts,
         pred_score,
@@ -96,14 +96,8 @@ def run_repnet(model, imgs, vid_fps):
     )
 
 
-def create_count_video(imgs, model_output):
-        (
-        pred_period,
-        pred_score,
-        within_period,
-        per_frame_counts,
-        chosen_stride,
-    ) = model_output
+def create_count_video(imgs, vid_fps, model_output):
+    (_, pred_score, within_period, per_frame_counts, _,) = model_output
 
     # Debugging video showing scores, per-frame frequency prediction and
     # within_period scores.
@@ -113,19 +107,19 @@ def create_count_video(imgs, model_output):
     elif not os.path.exists(TEMP_DIR):
         os.makedirs(TEMP_DIR)
 
-    create_count_video(
+    repnet.create_count_video(
         imgs,
         per_frame_counts,
         within_period,
         score=pred_score,
         fps=vid_fps,
-        output_file=temp_vid_location,
+        output_file=tmp_vid_location,
         delay=1000 / VIZ_FPS,
         plot_count=True,
         plot_within_period=True,
         plot_score=True,
     )
-    show_video(temp_vid_location)
+    repnet.show_video(tmp_vid_location)
 
 
 def main():
@@ -135,7 +129,7 @@ def main():
         exit(1)
     imgs, vid_fps = repnet.read_video(VIDEO_PATH)
     model_output = run_repnet(repnet.RepNet(), imgs, vid_fps)
-    create_count_video(imgs, model_output)
+    create_count_video(imgs, vid_fps, model_output)
 
 
 if __name__ == "__main__":

@@ -261,7 +261,7 @@ def get_sims(embs, temperature):
         sims = -1.0 * dist
         return sims
 
-    sims = tf.map_fn(_get_sims, embs)
+    sims = tf.map_fn(_get_sims, embs, fn_output_signature=tf.TensorSpec((64, 64), tf.float32))
     sims /= temperature
     sims = tf.nn.softmax(sims, axis=-1)
     sims = tf.expand_dims(sims, -1)
